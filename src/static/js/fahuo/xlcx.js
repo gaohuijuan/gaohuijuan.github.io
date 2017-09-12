@@ -44,6 +44,24 @@ $(function() {
 									result = data.data.list;
 									offset = data.data.offset;
 									jroll.options.total = data.data.pagerSize;
+
+
+									for(var i = 0; i < result.length; i++) {
+										var temp = {};
+										temp['id'] = i;
+										var tempArray = [];
+										tempArray.push(result[i]); //0 1
+										if(i + 1 < result.length) { //3 1 2
+											tempArray.push(result[++i]);
+										}
+										temp['list'] = tempArray;
+										a.push(temp);
+									}
+									parms.success({
+										"item": a
+									});
+
+									
 								}
 							},
 							error: function(data) {
@@ -56,22 +74,9 @@ $(function() {
 						　　}
 						});
 
-						setTimeout(function() {
-							for(var i = 0; i < result.length; i++) {
-								var temp = {};
-								temp['id'] = i;
-								var tempArray = [];
-								tempArray.push(result[i]); //0 1
-								if(i + 1 < result.length) { //3 1 2
-									tempArray.push(result[++i]);
-								}
-								temp['list'] = tempArray;
-								a.push(temp);
-							}
-							parms.success({
-								"item": a
-							});
-						}, 800);
+						/*setTimeout(function() {
+							
+						}, 800);*/
 					}
 
 					var jroll = new JRoll("#wrapper", {
