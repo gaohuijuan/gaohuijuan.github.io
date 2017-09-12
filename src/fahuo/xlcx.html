@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>线路查询</title>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- build:css static/css/mui.min.css -->  
+    <link rel="stylesheet" href="../static/css/mui.min.css">
+    <!-- /build -->
+    <!-- build:css static/css/reset.min.css --> 
+    <!--<link rel="stylesheet" href="../static/css/reset.min.css">-->
+    <!-- /build -->
+    <!-- build:css static/css/common.css --> 
+    <link rel="stylesheet" href="../static/css/common.css">
+    <!-- /build -->
+    <!-- build:css static/css/fahuo/xlcx.css --> 
+    <link rel="stylesheet" href="../static/css/fahuo/xlcx.css">
+    <!-- /build -->
+</head>
+<body>
+<!-- 选择线路 -->
+<div class="serch">
+    <div id="" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
+        搜索线路
+    </div>
+    <div class="mui-input-row" style="margin-left:1px;">
+        <div id="divAddrs" style="width: 100%;padding: 5px  5%;overflow: hidden;">
+            <select style="width:25%;float: left;margin-right: 1%;" size="1" name="provinceid" id="province" class="input-medium" onchange="changeProvince()" data-rule="省份:required;">
+                <option value="">--选择省份--</option>
+            </select>
+
+            <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="city" name="cityid" onchange="changeCity()" data-rule="城市:required;">
+                <option value="">-选择城市-</option>
+            </select>
+            <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="area" name="areaid" data-rule="区县:required;">
+                <option value="">-选择区县-</option>
+            </select>
+            <div id='adsserch'>搜索</div>
+        </div>
+    </div>
+    <div id="cir" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
+
+    </div>
+</div>
+<div class="content">
+    <div id="wrapper">
+        <div id="scroller"></div>
+    </div>
+</div>
+<script id="xianLuList" type="text/html">
+    {{each list as value i}}
+    <div class="circuits">
+
+        <div class="carrier">
+            <span class="banci" id="{{value.wayid}}">班次：{{value.wayname}}</span>
+        </div>
+        <div class="classes">
+            <div class="depart">
+                <span>发车:{{value.begintime}}</span>
+                <span>到站:{{value.endtime}}</span>
+            </div>
+            <div class="transfer">
+                <div class="ortransfer">是否中转：{{ if value.istransfer==0}}是{{else}}否{{/if}}</div>
+                <div class="regular ">
+
+                    <div class="often">
+                        频次:{{value.frequency}}
+                    </div>
+                    <img src="{{imgPrefix()}}/static/img/fenge_icon@2x.png" style="height: 5px;width: 88px;display: block;" />
+                </div>
+                <div class="money">价格
+                    <span style="color: #FD655E;">￥{{value.price}}</span>
+                </div>
+            </div>
+            <div class="unload">
+                卸货地址：{{value.addressdetail}}
+            </div>
+            <div class="unload">承运商:{{value.providername}}、{{value.transfername}}</div>
+            <div class="unload">超标收费标准:{{value.extrachargerule}}</div>
+            {{if value.careful }}
+            <div class="unload">注意事项:{{value.careful}}</div>{{/if}}
+        </div>
+    </div>
+
+    {{/each}}
+</script>
+</body>
+<!-- build:js static/js/jquery-1.11.3.min.js -->
+<script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
+<!-- /build -->
+<!-- build:js static/js/artTemplate/template.js -->
+<script type="text/javascript" src="../static/js/artTemplate/template.js"></script>
+<!-- /build -->
+<!-- build:js static/js/jroll/jroll.js -->
+<script type="text/javascript" src="../static/js/jroll/jroll.js"></script>
+<!-- /build -->
+<!-- build:js static/js/jroll/jroll-pulldown.js -->
+<script type="text/javascript" src="../static/js/jroll/jroll-pulldown.js"></script>
+<!-- /build -->
+<!-- build:js static/js/jroll/jroll-infinite.js -->
+<script type="text/javascript" src="../static/js/jroll/jroll-infinite.js"></script>
+<!-- /build -->
+<!-- build:js static/js/mui.min.js -->
+<script type="text/javascript" src="../static/js/mui.min.js"></script>
+<!-- /build -->
+<!-- build:js static/js/common.js -->
+<script type="text/javascript" src="../static/js/common.js"></script>
+<!-- /build -->
+<!-- build:js static/js/ajax.js -->
+<script type="text/javascript" src="../static/js/ajax.js"></script>
+<!-- /build -->
+<!-- build:js static/js/fahuo/xlcx.js -->
+<script type="text/javascript" src="../static/js/fahuo/xlcx.js"></script>
+<!-- /build -->
+</html>
