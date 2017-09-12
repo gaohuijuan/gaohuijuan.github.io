@@ -670,7 +670,7 @@ function getvalue(name) {
 	}
 }
 // 获取版本信息
-ajax_get_version();
+// ajax_get_version();
 function getVersionSuccess(data){
 	wx_version=data;
 	var oldVersion=localStorage.getItem("oldVersion");
