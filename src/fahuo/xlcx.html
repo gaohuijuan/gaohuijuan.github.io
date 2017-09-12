@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>线路查询</title>
@@ -14,80 +14,84 @@
     <!--<link rel="stylesheet" href="../static/css/reset.min.css">-->
     <!-- /build -->
     <!-- build:css static/css/common.css --> 
-    <link rel="stylesheet" href="../static/css/common.css">
+    <!-- <link rel="stylesheet" href="../static/css/common.css"> -->
     <!-- /build -->
     <!-- build:css static/css/fahuo/xlcx.css --> 
     <link rel="stylesheet" href="../static/css/fahuo/xlcx.css">
     <!-- /build -->
 </head>
-<body>
-<!-- 选择线路 -->
-<div class="serch">
-    <div id="" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
-        搜索线路
-    </div>
-    <div class="mui-input-row" style="margin-left:1px;">
-        <div id="divAddrs" style="width: 100%;padding: 5px  5%;overflow: hidden;">
-            <select style="width:25%;float: left;margin-right: 1%;" size="1" name="provinceid" id="province" class="input-medium" onchange="changeProvince()" data-rule="省份:required;">
-                <option value="">--选择省份--</option>
-            </select>
+<body style="background:#ffffff;">
 
-            <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="city" name="cityid" onchange="changeCity()" data-rule="城市:required;">
-                <option value="">-选择城市-</option>
-            </select>
-            <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="area" name="areaid" data-rule="区县:required;">
-                <option value="">-选择区县-</option>
-            </select>
-            <div id='adsserch'>搜索</div>
+    
+    <div class="serch">
+        <div id="" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
+            搜索线路
         </div>
-    </div>
-    <div id="cir" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
+        <div class="mui-input-row" style="margin-left:1px;">
+            <div id="divAddrs" style="width: 100%;padding: 5px  5%;overflow: hidden;">
+                <select style="width:25%;float: left;margin-right: 1%;" size="1" name="provinceid" id="province" class="input-medium" onchange="changeProvince()" data-rule="省份:required;">
+                    <option value="">--选择省份--</option>
+                </select>
 
-    </div>
-</div>
-<div class="content">
-    <div id="wrapper">
-        <div id="scroller"></div>
-    </div>
-</div>
-<script id="xianLuList" type="text/html">
-    {{each list as value i}}
-    <div class="circuits">
-
-        <div class="carrier">
-            <span class="banci" id="{{value.wayid}}">班次：{{value.wayname}}</span>
-        </div>
-        <div class="classes">
-            <div class="depart">
-                <span>发车:{{value.begintime}}</span>
-                <span>到站:{{value.endtime}}</span>
+                <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="city" name="cityid" onchange="changeCity()" data-rule="城市:required;">
+                    <option value="">-选择城市-</option>
+                </select>
+                <select style="width:25%;float: left;margin-right: 1%;" size="1" class="input-medium" id="area" name="areaid" data-rule="区县:required;">
+                    <option value="">-选择区县-</option>
+                </select>
+                <div id='adsserch'>搜索</div>
             </div>
-            <div class="transfer">
-                <div class="ortransfer">是否中转：{{ if value.istransfer==0}}是{{else}}否{{/if}}</div>
-                <div class="regular ">
+        </div>
+        <div id="cir" style="width: 90%;padding: 10px  5%;font-size: 15px;color: #333;">
 
-                    <div class="often">
-                        频次:{{value.frequency}}
+        </div>
+    </div>
+    <div class="content">
+        <div id="wrapper">
+            <div id="scroller"></div>
+        </div>
+    </div>
+    <script id="xianLuList" type="text/html">
+        {{each list as value i}}
+        <div class="circuits">
+
+            <div class="carrier">
+                <span class="banci" id="{{value.wayid}}">班次：{{value.wayname}}</span>
+            </div>
+            <div class="classes">
+                <div class="depart">
+                    <span>发车:{{value.begintime}}</span>
+                    <span>到站:{{value.endtime}}</span>
+                </div>
+                <div class="transfer">
+                    <div class="ortransfer">是否中转：{{ if value.istransfer==0}}是{{else}}否{{/if}}</div>
+                    <div class="regular ">
+
+                        <div class="often">
+                            频次:{{value.frequency}}
+                        </div>
+                        <img src="{{imgPrefix()}}/static/img/fenge_icon@2x.png" style="height: 5px;width: 88px;display: block;" />
                     </div>
-                    <img src="{{imgPrefix()}}/static/img/fenge_icon@2x.png" style="height: 5px;width: 88px;display: block;" />
+                    <div class="money">价格
+                        <span style="color: #FD655E;">￥{{value.price}}</span>
+                    </div>
                 </div>
-                <div class="money">价格
-                    <span style="color: #FD655E;">￥{{value.price}}</span>
+                <div class="unload">
+                    卸货地址：{{value.addressdetail}}
                 </div>
+                <div class="unload">承运商:{{value.providername}}、{{value.transfername}}</div>
+                <div class="unload">超标收费标准:{{value.extrachargerule}}</div>
+                {{if value.careful }}
+                <div class="unload">注意事项:{{value.careful}}</div>{{/if}}
             </div>
-            <div class="unload">
-                卸货地址：{{value.addressdetail}}
-            </div>
-            <div class="unload">承运商:{{value.providername}}、{{value.transfername}}</div>
-            <div class="unload">超标收费标准:{{value.extrachargerule}}</div>
-            {{if value.careful }}
-            <div class="unload">注意事项:{{value.careful}}</div>{{/if}}
         </div>
-    </div>
 
-    {{/each}}
-</script>
+        {{/each}}
+    </script>   
+        
+                
 </body>
+
 <!-- build:js static/js/jquery-1.11.3.min.js -->
 <script type="text/javascript" src="../static/js/jquery-1.11.3.min.js"></script>
 <!-- /build -->
