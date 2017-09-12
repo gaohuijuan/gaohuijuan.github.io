@@ -36,11 +36,11 @@ $(function() {
 				console.log(receiverareaid);
 				console.log(receivercityid);
 				if(p.length <= 0) {
-					mui.toast("请选择省份");
-					return;
+					// mui.toast("请选择省份");
+					// return;
 				} else if(receivercityid.length <= 0) {
-					mui.toast("请选择城市");
-					return;
+					// mui.toast("请选择城市");
+					// return;
 				} else {
 					function ajax(parms) {
 						var a = [],
