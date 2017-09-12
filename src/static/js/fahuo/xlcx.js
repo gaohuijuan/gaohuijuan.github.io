@@ -53,7 +53,7 @@ $(function() {
 							"offset": offset
 						};
 						$.ajax({
-							url: basepath + "wuliu/outer/addrs/getProvince",
+							url: "https://www.baidu.com/s?ie=utf-8&csq=1&pstg=22&mod=2&isbd=1&cqid=ae84921500001567&istc=1121&ver=RAx8GAoFOe0aje7boq4Wye9W20N6XCiND9K&chk=59b78bb5&isid=2D3D1E70F8976587&ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=cookie&rsv_pq=f81bdc4300000d36&rsv_t=e5b2L3hrksy3eOJbSzdFpKNvFBFzB2X4KACgUk%2FCKVCkyTrLAzG1M7jS85Q&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug1=7&rsv_sug7=100&_ck=1382.0.-1.-1.-1.-1.-1&rsv_isid=1454_21122_17001_20930&isctg=5&rsv_stat=-2&rsv_sug7=100",
 							dataType: 'json',
 							type: 'post',
 							timeout: 3000,
